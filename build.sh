@@ -1,5 +1,5 @@
 # 設定
-APP_NAME="kcl-go"
+APP_NAME=$(basename `pwd`)
 APP_OS="linux darwin windows"
 APP_ARCH="386 amd64"
 
@@ -22,9 +22,6 @@ echo APP_VERSION is $APP_VERSION
 
 # 必要なライブラリを集める
 go get github.com/marcy-go/kcl
-
-# リリース用ディレクトリ作成
-mkdir -p artifacts
 
 # クロスコンパイルする
 gox -os="$APP_OS" -arch="$APP_ARCH" -output="artifacts/{{.OS}}-{{.Arch}}/$APP_NAME" -ldflags "-X main.version '$APP_VERSION'"
